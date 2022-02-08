@@ -2,9 +2,6 @@ package com.example.sw0b_001;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.app.Activity;
@@ -16,12 +13,12 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.sw0b_001.Helpers.Datastore;
-import com.example.sw0b_001.Providers.Emails.EmailMessage;
-import com.example.sw0b_001.Providers.Emails.EmailMessageDao;
-import com.example.sw0b_001.Providers.Emails.EmailThreadRecyclerAdapter;
-import com.example.sw0b_001.Providers.Emails.EmailThreads;
-import com.example.sw0b_001.Providers.Emails.EmailThreadsDao;
+import com.example.sw0b_001.Database.Datastore;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessage;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadRecyclerAdapter;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
 
 import java.util.ArrayList;
 import java.util.List;

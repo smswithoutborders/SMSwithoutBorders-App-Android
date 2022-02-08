@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.example.sw0b_001">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.SENDTO" />
+
             <data android:scheme="*" />
         </intent>
     </queries>
-
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -28,16 +28,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".SettingsActivity"
-            android:parentActivityName=".PlatformsActivity"
-            android:label="Settings">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PlatformsActivity" />
+            android:name=".Test.TestSecurityActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.MaterialComponents.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".SyncProcessingActivity"
+            android:name=".SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName=".DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".HandshakeActivity"
             android:theme="@style/Theme.MyAppNoBar" />
         <activity
             android:name=".SplashActivity"
@@ -59,11 +70,11 @@
         </activity>
         <activity
             android:name=".TextThreadActivity"
-            android:parentActivityName=".PlatformsActivity"
+            android:parentActivityName=".DashboardActivity"
             android:theme="@style/Theme.MyAppNoBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PlatformsActivity" />
+                android:value=".DashboardActivity" />
         </activity>
         <activity
             android:name=".EmailBodyActivity"
@@ -74,55 +85,55 @@
         </activity>
         <activity
             android:name=".TextBodyActivity"
-            android:parentActivityName=".PlatformsActivity">
+            android:parentActivityName=".DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PlatformsActivity" />
+                android:value=".DashboardActivity" />
         </activity>
         <activity
             android:name=".EmailThreadsActivity"
             android:label="Recents..."
-            android:parentActivityName=".PlatformsActivity">
+            android:parentActivityName=".DashboardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PlatformsActivity" />
+                android:value=".DashboardActivity" />
         </activity>
         <activity
             android:name=".PermissionsActivity"
             android:label="Permission" />
         <activity
-            android:name=".PlatformsActivity"
+            android:name=".DashboardActivity"
             android:label="Synchronized Platforms" />
         <activity
             android:name=".EmailComposeActivity"
-            android:parentActivityName=".PlatformsActivity"
+            android:parentActivityName=".DashboardActivity"
             android:theme="@style/Theme.MyAppNoBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".TextComposeActivity"
-            android:parentActivityName=".PlatformsActivity"
+            android:parentActivityName=".DashboardActivity"
             android:theme="@style/Theme.MyAppNoBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <activity
-            android:name=".QRScannerActivity"
+            android:name=".QRScanActivity"
             android:label="QR Scanner"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName=".PasswordPromptActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
+                android:value=".PasswordPromptActivity" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".PasswordPromptActivity"
             android:theme="@style/Theme.MyAppNoBar" />
 
         <meta-data

@@ -1,14 +1,11 @@
 package com.example.sw0b_001;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,15 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.sw0b_001.Helpers.Datastore;
-import com.example.sw0b_001.Providers.Emails.EmailMessage;
-import com.example.sw0b_001.Providers.Emails.EmailMessageDao;
-import com.example.sw0b_001.Providers.Emails.EmailThreadRecyclerAdapter;
-import com.example.sw0b_001.Providers.Emails.EmailThreads;
-import com.example.sw0b_001.Providers.Emails.EmailThreadsDao;
-import com.example.sw0b_001.Providers.Text.TextMessage;
-import com.example.sw0b_001.Providers.Text.TextMessageDao;
-import com.example.sw0b_001.Providers.Text.TextMessageRecyclerAdapter;
+import com.example.sw0b_001.Database.Datastore;
+import com.example.sw0b_001.PublisherTemplates.Text.TextMessage;
+import com.example.sw0b_001.PublisherTemplates.Text.TextMessageDao;
+import com.example.sw0b_001.PublisherTemplates.Text.TextMessageRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

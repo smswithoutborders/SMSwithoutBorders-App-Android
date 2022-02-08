@@ -1,20 +1,18 @@
 package com.example.sw0b_001;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.example.sw0b_001.Helpers.Datastore;
-import com.example.sw0b_001.Providers.Emails.EmailThreads;
-import com.example.sw0b_001.Providers.Emails.EmailThreadsDao;
-import com.example.sw0b_001.Providers.Emails.EmailThreadsRecyclerViewAdapter;
+import com.example.sw0b_001.Database.Datastore;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsRecyclerViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

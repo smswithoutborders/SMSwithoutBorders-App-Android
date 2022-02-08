@@ -1,23 +1,14 @@
 package com.example.sw0b_001;
 
-import android.Manifest;
 import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.telephony.SmsManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,27 +16,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
 import com.example.sw0b_001.Helpers.CustomHelpers;
-import com.example.sw0b_001.Helpers.Datastore;
-import com.example.sw0b_001.Helpers.GatewayValues;
-import com.example.sw0b_001.Helpers.SecurityLayer;
-import com.example.sw0b_001.Providers.Emails.EmailMessage;
-import com.example.sw0b_001.Providers.Emails.EmailMessageDao;
-import com.example.sw0b_001.Providers.Emails.EmailThreads;
-import com.example.sw0b_001.Providers.Emails.EmailThreadsDao;
-import com.example.sw0b_001.Providers.Gateway.GatewayDao;
-import com.example.sw0b_001.Providers.Gateway.GatewayPhonenumber;
-import com.example.sw0b_001.Providers.Platforms.PlatformDao;
-import com.example.sw0b_001.Providers.Platforms.Platforms;
+import com.example.sw0b_001.Database.Datastore;
+import com.example.sw0b_001.Models.Gateway.GatewayClient;
+import com.example.sw0b_001.Security.SecureProtocol;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessage;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.Models.Gateway.GatewayDao;
+import com.example.sw0b_001.Models.Platforms.PlatformDao;
+import com.example.sw0b_001.Models.Platforms.Platform;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStoreException;
@@ -63,10 +50,10 @@ import javax.crypto.NoSuchPaddingException;
 public class EmailComposeActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
-    SecurityLayer securityLayer;
+    SecureProtocol secureProtocol;
     long emailId;
-    private List<GatewayPhonenumber> phonenumbers = new ArrayList<>();
-    private Platforms platforms;
+    private List<GatewayClient> phonenumbers = new ArrayList<>();
+    private Platform platform;
     private long threadId;
 
 
@@ -98,7 +85,7 @@ public class EmailComposeActivity extends AppCompatActivity {
                     phonenumbers = gatewayDao.getAll();
 
                     PlatformDao platformDao = platformDb.platformDao();
-                    platforms = platformDao.get(platformId);
+                    platform = platformDao.get(platformId);
                 }
             });
             getPhonenumber.start();
@@ -107,7 +94,7 @@ public class EmailComposeActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            securityLayer = new SecurityLayer(getApplicationContext());
+            secureProtocol = new SecureProtocol(getApplicationContext());
         } catch (KeyStoreException e) {
             e.printStackTrace();
         } catch (CertificateException e) {
@@ -250,7 +237,7 @@ public class EmailComposeActivity extends AppCompatActivity {
     private void sendMessage(String recipient, String subject, String body) throws BadPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, UnrecoverableEntryException, KeyStoreException, NoSuchPaddingException, InvalidKeyException, CertificateException, IOException {
 //        Toast.makeText(getBaseContext(), "SMS sending...",yy Toast.LENGTH_LONG).show();
         String phonenumber = "";
-        for(GatewayPhonenumber number : phonenumbers) {
+        for(GatewayClient number : phonenumbers) {
 //            Log.i(this.getLocalClassName(), "[+] Number: " + number.getNumber());
             if(number.isDefault())
                 phonenumber = number.getCountryCode() + number.getNumber();
@@ -261,14 +248,14 @@ public class EmailComposeActivity extends AppCompatActivity {
             return;
         }
 
-        body = formatForEmail(platforms.getProvider().toLowerCase(), platforms.getName().toLowerCase(), "send", recipient, subject, body);
+        body = formatForEmail(platform.getProvider().toLowerCase(), platform.getName().toLowerCase(), "send", recipient, subject, body);
 //            Log.i(this.getLocalClassName(), ">> Body: " + body);
         body = getEncryptedSMS(body);
 //            Log.i(this.getLocalClassName(), ">> decrypted: " + new String(securityLayer.decrypt_AES(Base64.decode(body.getBytes(), Base64.DEFAULT))));
 //            Log.i(this.getLocalClassName(), ">> iv: " + new String(securityLayer.getIV()));
 //            byte[] byte_encryptedIv = securityLayer.encrypt_AES(securityLayer.getIV(), passwdHash.getBytes());
 //            byte[] fullmessage = securityLayer.encrypt_AES((new String(securityLayer.getIV()) + "_" + body), passwdHash.getBytes("UTF-8"));
-        body = new String(securityLayer.getIV()) + body;
+        body = new String(secureProtocol.getIV()) + body;
 //            body = Base64.encodeToString(fullmessage, Base64.DEFAULT);
 //            Log.i(this.getLocalClassName(), "[+] Transmission data: " + body);
 //            CustomHelpers.sendEmailSMS(getBaseContext(), body, phonenumber, emailId);
@@ -319,9 +306,9 @@ public class EmailComposeActivity extends AppCompatActivity {
     }
 
     private String getEncryptedSMS(String data) throws BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnrecoverableEntryException, KeyStoreException, CertificateException, IOException {
-        String randString = securityLayer.generateRandom(16);
+        String randString = secureProtocol.generateRandom(16);
 //        Log.i(this.getLocalClassName(), ">> Rand string: " + randString);
-        byte[] encryptedData = securityLayer.encrypt_AES(data, randString.getBytes());
+        byte[] encryptedData = secureProtocol.encrypt_AES(data, randString.getBytes());
         return Base64.encodeToString(encryptedData, Base64.NO_WRAP);
     }
 

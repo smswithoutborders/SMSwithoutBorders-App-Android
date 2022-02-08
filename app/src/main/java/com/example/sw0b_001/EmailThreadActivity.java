@@ -15,12 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.sw0b_001.Helpers.Datastore;
-import com.example.sw0b_001.Providers.Emails.EmailMessage;
-import com.example.sw0b_001.Providers.Emails.EmailThreadsDao;
-import com.example.sw0b_001.Providers.Emails.EmailThreadRecyclerAdapter;
-import com.example.sw0b_001.Providers.Emails.EmailMessageDao;
-import com.example.sw0b_001.Providers.Emails.EmailThreads;
+import com.example.sw0b_001.Database.Datastore;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessage;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadRecyclerAdapter;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

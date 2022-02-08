@@ -26,7 +26,7 @@ public class PermissionsActivity extends AppCompatActivity {
 
     public void scanQR(View view) {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(this, QRScannerActivity.class);
+            Intent intent = new Intent(this, QRScanActivity.class);
             startActivity(intent);
             finish();
         }
@@ -45,12 +45,12 @@ public class PermissionsActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Showing the toast message
                 Toast.makeText(getApplicationContext(), "Camera Permission Granted", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, QRScannerActivity.class);
+                Intent intent = new Intent(this, QRScanActivity.class);
                 startActivity(intent);
             }
             else {
                 Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, PasswordPromptActivity.class);
                 startActivity(intent);
             }
         }

@@ -6,18 +6,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.room.Room;
 
-import com.example.sw0b_001.EmailThreadActivity;
-import com.example.sw0b_001.EmailThreadsActivity;
-import com.example.sw0b_001.Providers.Emails.EmailMessageDao;
+import com.example.sw0b_001.Database.Datastore;
+import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
 import com.example.sw0b_001.R;
 
 import java.text.SimpleDateFormat;
@@ -25,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
-
-import static android.content.ContentValues.TAG;
 
 public class CustomHelpers {
     public static String getDateTime() {
