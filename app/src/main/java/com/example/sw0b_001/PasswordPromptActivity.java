@@ -38,4 +38,10 @@ public class PasswordPromptActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
+
+
+    private void remotelyAuthenticateUser(String userID, String password) {
+        
+    }
+
 }

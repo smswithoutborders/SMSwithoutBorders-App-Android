@@ -79,21 +79,11 @@ public class HandshakeActivity extends AppCompatActivity {
                     // Third part Handshake
                     // TODO request for password
                     Intent passwordPromptIntent = new Intent(getApplicationContext(), PasswordPromptActivity.class);
+                    Intent updateUserActivity = new Intent(getApplicationContext(), UpdateUserActivity.class);
+
+                    passwordPromptIntent.putExtras(updateUserActivity);
                     startActivity(passwordPromptIntent);
-
-                    try {
-                        String gatewayServerPublicKey = response.getString("public_key");
-                        String generatedSharedKey = response.getString("generated_shared_key");
-                        String UID = response.getString("UID");
-                        JSONArray platformsJSONArray = response.getJSONArray("platforms");
-                        JSONArray gatewayClientsJSONArray = response.getJSONArray("gatewayClients");
-
-                        List<GatewayClient> gatewayClients = GatewayClient.parseGatewayFromJson(gatewayClientsJSONArray);
-                        List<Platform> platforms = GatewayClient.parseGatewayFromJson(platformsJSONArray);
-
-                    } catch (JSONException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    finish();
                 }
             }, new Response.ErrorListener() {
                 @Override
