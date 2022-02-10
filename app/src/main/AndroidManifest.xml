@@ -28,7 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".UpdateUserActivity"
+            android:exported="false" />
         <activity
             android:name=".Test.TestSecurityActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
