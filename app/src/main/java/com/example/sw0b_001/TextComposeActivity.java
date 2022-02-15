@@ -19,12 +19,12 @@ import androidx.room.Room;
 import com.example.sw0b_001.Helpers.CustomHelpers;
 import com.example.sw0b_001.Database.Datastore;
 import com.example.sw0b_001.Models.Platforms.Platform;
-import com.example.sw0b_001.Security.SecureProtocol;
+import com.example.sw0b_001.Security.SecurityHandler;
 import com.example.sw0b_001.Models.Gateway.GatewayDao;
 import com.example.sw0b_001.Models.Gateway.GatewayClient;
 import com.example.sw0b_001.Models.Platforms.PlatformDao;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessage;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessageDao;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -45,7 +45,7 @@ import javax.crypto.NoSuchPaddingException;
 public class TextComposeActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
-    SecureProtocol secureProtocol;
+    SecurityHandler secureProtocol;
     long textMessageId;
     private List<GatewayClient> phonenumbers = new ArrayList<>();
     private Platform platform;
@@ -89,7 +89,7 @@ public class TextComposeActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            secureProtocol = new SecureProtocol(getApplicationContext());
+            secureProtocol = new SecurityHandler(getApplicationContext());
         } catch (KeyStoreException e) {
             e.printStackTrace();
         } catch (CertificateException e) {

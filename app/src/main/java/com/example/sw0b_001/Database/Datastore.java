@@ -8,16 +8,16 @@ import androidx.room.InvalidationTracker;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessage;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadsDao;
 import com.example.sw0b_001.Models.Gateway.GatewayClient;
 import com.example.sw0b_001.Models.Gateway.GatewayDao;
 import com.example.sw0b_001.Models.Platforms.PlatformDao;
 import com.example.sw0b_001.Models.Platforms.Platform;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessage;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessageDao;
 
 import org.jetbrains.annotations.NotNull;
 

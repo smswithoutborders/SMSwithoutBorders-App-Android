@@ -13,7 +13,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.room.Room;
 
 import com.example.sw0b_001.Database.Datastore;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessageDao;
 import com.example.sw0b_001.R;
 
 import java.text.SimpleDateFormat;

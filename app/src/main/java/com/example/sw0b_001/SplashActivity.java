@@ -61,7 +61,6 @@ public class SplashActivity extends AppCompatActivity {
     private void navigateToPermissionsActivity() {
         Intent intent = new Intent(this, PermissionsActivity.class);
         startActivity(intent);
-        return;
     }
 
     private void navigateToDashboardActivity() {

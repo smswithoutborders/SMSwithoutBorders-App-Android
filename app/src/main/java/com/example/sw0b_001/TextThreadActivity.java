@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.sw0b_001.Database.Datastore;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessage;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessageDao;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessageRecyclerAdapter;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessageRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

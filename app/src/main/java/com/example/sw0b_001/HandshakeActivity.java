@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.security.keystore.KeyProperties;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -11,34 +12,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.sw0b_001.Models.Gateway.GatewayClient;
-import com.example.sw0b_001.Models.Platforms.Platform;
-import com.example.sw0b_001.Security.AsymmetricSecurity;
 import com.example.sw0b_001.Security.RSAProtocol;
-import com.example.sw0b_001.Security.SecureProtocol;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
 public class HandshakeActivity extends AppCompatActivity {
+
+    public static final String DEFAULT_KEYPAIR_ALGORITHM_PADDING = "RSA/ECB/" + KeyProperties.ENCRYPTION_PADDING_RSA_OAEP;
+    public static final String DEFAULT_KEYSTORE_ALIAS = "DEFAULT_SWOB_KEYSTORE";
+    public static String DEFAULT_KEYSTORE_PROVIDER = "AndroidKeyStore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +51,11 @@ public class HandshakeActivity extends AppCompatActivity {
     public void processQR(String QRText) {
         try {
             // TODO provide default keystoreProvider and keystoreAlias values
-            String keyStoreProvider = "";
-            String keyStoreAlias = "";
-
             // TODO check if public key already exist
             // if exist use it
             // else create new one and store
 
-            RSAProtocol asymmetricSecurityRSA = new RSAProtocol(keyStoreProvider, keyStoreAlias);
+            RSAProtocol asymmetricSecurityRSA = new RSAProtocol(DEFAULT_KEYSTORE_PROVIDER, DEFAULT_KEYSTORE_ALIAS);
             byte[] publicKeyEncoded = asymmetricSecurityRSA.getPublicKeyEncoded();
 
             String jsonRequestString = "{\"public_key\": \"" + publicKeyEncoded + "\"}";
@@ -95,33 +85,16 @@ public class HandshakeActivity extends AppCompatActivity {
             queue.add(jsonObjectRequest);
         } catch (KeyStoreException e) {
             e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (UnrecoverableKeyException e) {
-            e.printStackTrace();
         } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
             e.printStackTrace();
         } catch (NoSuchProviderException e) {
             e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
         }
     }
-
-
-    public void
 
 
     public Map<Integer, List<String>>[] extractPlatformFromGateway(JSONArray gatewayData) throws JSONException {

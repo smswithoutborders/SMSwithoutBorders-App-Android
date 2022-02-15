@@ -28,19 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".UpdateUserActivity"
             android:exported="false" />
-        <activity
-            android:name=".Test.TestSecurityActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.MaterialComponents.Fullscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
         <activity
             android:name=".SettingsActivity"
             android:label="Settings"
@@ -49,9 +42,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
+
         <activity
             android:name=".HandshakeActivity"
             android:theme="@style/Theme.MyAppNoBar" />
+
+
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -62,6 +59,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".EmailThreadActivity"
             android:parentActivityName=".EmailThreadsActivity"
@@ -70,6 +69,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".EmailThreadsActivity" />
         </activity>
+
+
         <activity
             android:name=".TextThreadActivity"
             android:parentActivityName=".DashboardActivity"
@@ -78,6 +79,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
+
         <activity
             android:name=".EmailBodyActivity"
             android:parentActivityName=".EmailThreadActivity">
@@ -85,6 +88,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".EmailThreadActivity" />
         </activity>
+
+
         <activity
             android:name=".TextBodyActivity"
             android:parentActivityName=".DashboardActivity">
@@ -92,6 +97,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
+
         <activity
             android:name=".EmailThreadsActivity"
             android:label="Recents..."
@@ -100,12 +107,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />
         </activity>
+
+
         <activity
             android:name=".PermissionsActivity"
             android:label="Permission" />
+
+
         <activity
             android:name=".DashboardActivity"
             android:label="Synchronized Platforms" />
+
+
         <activity
             android:name=".EmailComposeActivity"
             android:parentActivityName=".DashboardActivity"
@@ -116,6 +129,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".TextComposeActivity"
             android:parentActivityName=".DashboardActivity"
@@ -126,6 +141,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".QRScanActivity"
             android:label="QR Scanner"
@@ -134,9 +151,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PasswordPromptActivity" />
         </activity>
+
+
         <activity
             android:name=".PasswordPromptActivity"
             android:theme="@style/Theme.MyAppNoBar" />
+
 
         <meta-data
             android:name="preloaded_fonts"

@@ -20,7 +20,8 @@ public class UpdateUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_user);
     }
 
-    private downloadUserInformation(String userID) {
+    /*
+    private void downloadUserInformation(String userID) {
         try {
             String gatewayServerPublicKey = response.getString("public_key");
             String generatedSharedKey = response.getString("generated_shared_key");
@@ -35,4 +36,5 @@ public class UpdateUserActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+     */
 }

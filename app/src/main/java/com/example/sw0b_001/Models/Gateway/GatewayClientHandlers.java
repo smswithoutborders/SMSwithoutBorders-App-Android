@@ -8,10 +8,6 @@ import androidx.room.Room;
 
 import com.example.sw0b_001.Database.Datastore;
 import com.example.sw0b_001.Helpers.GatewayValues;
-import com.example.sw0b_001.Models.Platforms.Platform;
-import com.example.sw0b_001.Models.Platforms.PlatformDao;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
-import com.example.sw0b_001.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -22,11 +22,11 @@ import androidx.room.Room;
 import com.example.sw0b_001.Helpers.CustomHelpers;
 import com.example.sw0b_001.Database.Datastore;
 import com.example.sw0b_001.Models.Gateway.GatewayClient;
-import com.example.sw0b_001.Security.SecureProtocol;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessage;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.Security.SecurityHandler;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadsDao;
 import com.example.sw0b_001.Models.Gateway.GatewayDao;
 import com.example.sw0b_001.Models.Platforms.PlatformDao;
 import com.example.sw0b_001.Models.Platforms.Platform;
@@ -50,7 +50,7 @@ import javax.crypto.NoSuchPaddingException;
 public class EmailComposeActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
-    SecureProtocol secureProtocol;
+    SecurityHandler secureProtocol;
     long emailId;
     private List<GatewayClient> phonenumbers = new ArrayList<>();
     private Platform platform;
@@ -94,7 +94,7 @@ public class EmailComposeActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            secureProtocol = new SecureProtocol(getApplicationContext());
+            secureProtocol = new SecurityHandler(getApplicationContext());
         } catch (KeyStoreException e) {
             e.printStackTrace();
         } catch (CertificateException e) {

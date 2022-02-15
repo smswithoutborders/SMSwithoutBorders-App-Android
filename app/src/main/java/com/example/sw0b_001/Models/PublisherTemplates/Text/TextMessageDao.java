@@ -1,4 +1,4 @@
-package com.example.sw0b_001.PublisherTemplates.Text;
+package com.example.sw0b_001.Models.PublisherTemplates.Text;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

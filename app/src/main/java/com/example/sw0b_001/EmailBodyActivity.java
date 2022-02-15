@@ -14,11 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sw0b_001.Database.Datastore;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessage;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadRecyclerAdapter;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadRecyclerAdapter;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadsDao;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.sw0b_001.PublisherTemplates.Emails;
+package com.example.sw0b_001.Models.PublisherTemplates.Emails;
 
 import android.content.Context;
 import android.content.Intent;

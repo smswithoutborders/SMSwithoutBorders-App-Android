@@ -39,7 +39,7 @@ import javax.crypto.spec.OAEPParameterSpec;
 import javax.crypto.spec.PSource;
 import javax.crypto.spec.SecretKeySpec;
 
-public class SecureProtocol {
+public class SecurityHandler {
     private Cipher cipher;
     private SecretKeySpec key;
     private IvParameterSpec iv;
@@ -47,15 +47,17 @@ public class SecureProtocol {
 
     private SharedPreferences preferences;
     OAEPParameterSpec param = new OAEPParameterSpec("SHA-256", "MGF1", MGF1ParameterSpec.SHA1, PSource.PSpecified.DEFAULT);
-    public SecureProtocol() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        public static final String DEFAULT_KEYPAIR_ALGORITHM_PADDING = "RSA/ECB/" + KeyProperties.ENCRYPTION_PADDING_RSA_OAEP;
-        public static final String DEFAULT_KEYSTORE_ALIAS = "DEFAULT_SWOB_KEYSTORE";
-        public static String DEFAULT_KEYSTORE_PROVIDER = "AndroidKeyStore";
+
+    public static final String DEFAULT_KEYPAIR_ALGORITHM_PADDING = "RSA/ECB/" + KeyProperties.ENCRYPTION_PADDING_RSA_OAEP;
+    public static final String DEFAULT_KEYSTORE_ALIAS = "DEFAULT_SWOB_KEYSTORE";
+    public static String DEFAULT_KEYSTORE_PROVIDER = "AndroidKeyStore";
+
+    public SecurityHandler() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
         this.keyStore = KeyStore.getInstance(DEFAULT_KEYSTORE_PROVIDER);
         this.keyStore.load(null);
     }
 
-    public SecureProtocol(Context context) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+    public SecurityHandler(Context context) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
         this.keyStore = KeyStore.getInstance(DEFAULT_KEYSTORE_PROVIDER);
         this.keyStore.load(null);
 
@@ -94,12 +96,12 @@ public class SecureProtocol {
         return this.cipher.getIV();
     }
 
-    public boolean storeSecretKey(byte[] secretKey) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
+    public boolean storeSecretKey(byte[] secretKey, String keyStoreProvider) throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
         SecretKey key = new SecretKeySpec(secretKey, "AES");
-        KeyStore.SecretKeyEntry skEntry = new KeyStore.SecretKeyEntry(key);
-        KeyStore ks = KeyStore.getInstance(DEFAULT_KEYSTORE_PROVIDER);
-        ks.load(null);
-        this.keyStore.setEntry(GatewayValues.SHARED_KEY, skEntry, new KeyProtection.Builder(KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+        KeyStore.SecretKeyEntry secretKeyEntry = new KeyStore.SecretKeyEntry(key);
+        KeyStore keyStore = KeyStore.getInstance(keyStoreProvider);
+        keyStore.load(null);
+        keyStore.setEntry(GatewayValues.SHARED_KEY, secretKeyEntry, new KeyProtection.Builder(KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
                 .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
                 .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_OAEP)
                 .build());

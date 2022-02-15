@@ -1,4 +1,4 @@
-package com.example.sw0b_001.PublisherTemplates.Emails;
+package com.example.sw0b_001.Models.PublisherTemplates.Emails;
 
 import androidx.appcompat.app.ActionBar;
 import android.content.Context;

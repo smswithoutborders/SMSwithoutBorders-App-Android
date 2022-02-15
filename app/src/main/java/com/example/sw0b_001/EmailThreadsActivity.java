@@ -10,9 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.sw0b_001.Database.Datastore;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreads;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsDao;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadsRecyclerViewAdapter;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreads;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadsDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadsRecyclerViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

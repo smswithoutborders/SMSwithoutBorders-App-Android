@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.sw0b_001.Database.Datastore;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailThreadRecyclerAdapter;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailThreadRecyclerAdapter;
 import com.example.sw0b_001.Models.Platforms.PlatformDao;
 import com.example.sw0b_001.Models.Platforms.Platform;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessage;
-import com.example.sw0b_001.PublisherTemplates.Text.TextMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessage;
+import com.example.sw0b_001.Models.PublisherTemplates.Text.TextMessageDao;
 
 public class TextBodyActivity extends AppCompatActivity {
     TextMessage textMessage;

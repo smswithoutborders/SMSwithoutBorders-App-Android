@@ -7,12 +7,9 @@ import androidx.room.Room;
 
 import com.example.sw0b_001.Database.Datastore;
 import com.example.sw0b_001.EmailThreadsActivity;
-import com.example.sw0b_001.PublisherTemplates.Emails.EmailMessageDao;
+import com.example.sw0b_001.Models.PublisherTemplates.Emails.EmailMessageDao;
 import com.example.sw0b_001.R;
 import com.example.sw0b_001.TextThreadActivity;
-
-import java.util.List;
-import java.util.Map;
 
 public class PlatformsHandler {
     static public Intent getIntent(Context context, String platform, String type) {
